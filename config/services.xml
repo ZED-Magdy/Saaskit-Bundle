@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+<services>
+        <service id="saas_kit.request.subscriber" class="ZedMagdy\Bundle\SaasKitBundle\EventSubscribers\HttpRequestSubscriber"
+        autoconfigure="true"
+        >
+            <argument/>
+            <argument/>
+            <argument type="service" id="ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface"/>
+            <argument type="service" id="Symfony\Component\EventDispatcher\EventDispatcherInterface"/>
+            <tag name="kernel.event_listener" event="kernel.request" priority="512"/>
+        </service>
+        <service id="ZedMagdy\Bundle\SaasKitBundle\Factory\TenantFactory" />
+        <service id="ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface">
+            <!-- the first argument is the class and the second argument is the static method -->
+            <factory class="ZedMagdy\Bundle\SaasKitBundle\Factory\TenantFactory" method="create"/>
+        </service>
+    </services>
+</container>
