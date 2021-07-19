@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use ZedMagdy\Bundle\SaasKitBundle\Exceptions\TenantDoesNotExist;
 use ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface;
-use ZedMagdy\Bundle\SaasKitBundle\TenantResolved;
+use ZedMagdy\Bundle\SaasKitBundle\Event\TenantResolved;
 
 class HttpRequestSubscriber implements EventSubscriberInterface
 {

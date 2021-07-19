@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ZedMagdy\Bundle\SaasKitBundle;
+namespace ZedMagdy\Bundle\SaasKitBundle\Event;
 
 
 use Symfony\Contracts\EventDispatcher\Event;

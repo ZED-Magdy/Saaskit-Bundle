@@ -6,10 +6,9 @@
 
 <services>
         <service id="saas_kit.request.subscriber" class="ZedMagdy\Bundle\SaasKitBundle\EventSubscribers\HttpRequestSubscriber"
-        autoconfigure="true"
         >
-            <argument/>
-            <argument/>
+            <argument>%saas_kit.identifier%</argument>
+            <argument>%saas_kit.tenants_files_path%</argument>
             <argument type="service" id="ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface"/>
             <argument type="service" id="Symfony\Component\EventDispatcher\EventDispatcherInterface"/>
             <tag name="kernel.event_listener" event="kernel.request" priority="512"/>

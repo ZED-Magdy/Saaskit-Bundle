@@ -16,8 +16,7 @@ class SaasKitExtension extends Extension
         $configuration = new Configuration();
 
         $config = $this->processConfiguration($configuration, $configs);
-        $definition = $container->getDefinition("saas_kit.request.subscriber");
-        $definition->replaceArgument(0, $config['identifier']);
-        $definition->replaceArgument(1, $config['tenants_files_path']);
+        $container->setParameter('saas_kit.identifier', $config['identifier']);
+        $container->setParameter('saas_kit.tenants_files_path', $config['tenants_files_path']);
     }
 }
