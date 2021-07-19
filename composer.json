@@ -1,0 +1,25 @@
+{
+    "name": "zed/saaskit-bundle",
+    "description": "a bundle to easily make a multi tenancy app",
+    "require": {
+        "php": ">=7.2.5",
+        "ext-json": "*",
+        "symfony/http-foundation": "^4.4|^5.0",
+        "symfony/event-dispatcher": "^4.4|^5.0",
+        "symfony/dependency-injection": "^4.4|^5.0",
+        "symfony/config": "^4.4|^5.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Zed\\SaaskitBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ZED-Magdy",
+            "email": "zedmagdy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
