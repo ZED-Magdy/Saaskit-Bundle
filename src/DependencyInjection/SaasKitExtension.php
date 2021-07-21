@@ -18,5 +18,7 @@ class SaasKitExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('saas_kit.identifier', $config['identifier']);
         $container->setParameter('saas_kit.tenants_files_path', $config['tenants_files_path']);
+        $container->setParameter('saas_kit.factory.class', $config['factory']['class']);
+        $container->setParameter('saas_kit.factory.method', $config['factory']['method']);
     }
 }

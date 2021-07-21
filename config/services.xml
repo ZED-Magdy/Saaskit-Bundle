@@ -13,10 +13,10 @@
             <argument type="service" id="Symfony\Component\EventDispatcher\EventDispatcherInterface"/>
             <tag name="kernel.event_listener" event="kernel.request" priority="512"/>
         </service>
-        <service id="ZedMagdy\Bundle\SaasKitBundle\Factory\TenantFactory" />
+        <service id="%saas_kit.factory.class%" synthetic="true" />
         <service id="ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface">
             <!-- the first argument is the class and the second argument is the static method -->
-            <factory class="ZedMagdy\Bundle\SaasKitBundle\Factory\TenantFactory" method="create"/>
+            <factory class="%saas_kit.factory.class%" method="%saas_kit.factory.method%"/>
         </service>
     </services>
 </container>
