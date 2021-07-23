@@ -1,18 +1,29 @@
 {
-    "name": "zed/saaskit-bundle",
+    "name": "zedmagdy/saaskit-bundle",
     "description": "a bundle to easily make a multi tenancy app",
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.4",
         "ext-json": "*",
         "symfony/http-foundation": "^4.4|^5.0",
         "symfony/event-dispatcher": "^4.4|^5.0",
         "symfony/dependency-injection": "^4.4|^5.0",
-        "symfony/config": "^4.4|^5.0"
+        "symfony/config": "^4.4|^5.0",
+        "symfony/framework-bundle": "5.3.*",
+        "doctrine/doctrine-bundle": "^2.4",
+        "doctrine/doctrine-migrations-bundle": "^3.1",
+        "doctrine/orm": "^2.9",
+        "symfony/form": "^5.3",
+        "symfony/twig-bridge": "^5.3.3",
+        "symfony/translation": "^4.4|^5.0",
+        "symfony/twig-bundle": "^4.4|^5.0",
+        "symfony/validator": "^5.3.3",
+        "symfony/maker-bundle": "3.x-dev",
+        "doctrine/annotations": "1.14.x-dev"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Zed\\SaaskitBundle\\": "src/"
+            "ZedMagdy\\Bundle\\SaasKitBundle\\": "src/"
         }
     },
     "authors": [

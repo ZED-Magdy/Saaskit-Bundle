@@ -11,6 +11,7 @@
             <argument>%saas_kit.tenants_files_path%</argument>
             <argument type="service" id="ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface"/>
             <argument type="service" id="Symfony\Component\EventDispatcher\EventDispatcherInterface"/>
+            <argument type="service" id="Symfony\Component\Routing\Matcher\UrlMatcherInterface"/>
             <tag name="kernel.event_listener" event="kernel.request" priority="512"/>
         </service>
         <service id="%saas_kit.factory.class%" synthetic="true" />
@@ -18,5 +19,14 @@
             <!-- the first argument is the class and the second argument is the static method -->
             <factory class="%saas_kit.factory.class%" method="%saas_kit.factory.method%"/>
         </service>
+        <service id="saas_kit_create_controller" class="ZedMagdy\Bundle\SaasKitBundle\Controller\CreateTenantController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="Psr\Container\ContainerInterface"/>
+            </call>
+            <tag name="container.service_subscriber"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+    <service alias="saas_kit_create_controller" id="ZedMagdy\Bundle\SaasKitBundle\Controller\CreateTenantController"
+             public="true"/>
     </services>
 </container>

@@ -6,6 +6,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use ZedMagdy\Bundle\SaasKitBundle\Exceptions\TenantDoesNotExist;
 use ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface;
 use ZedMagdy\Bundle\SaasKitBundle\Event\TenantResolved;
@@ -16,13 +18,19 @@ class HttpRequestSubscriber implements EventSubscriberInterface
     private string $identifier;
     private TenantInterface $tenant;
     private EventDispatcherInterface $dispatcher;
+    private UrlMatcherInterface $matcher;
 
-    public function __construct(string $identifier, string $filesPath, TenantInterface $tenant, EventDispatcherInterface $dispatcher)
+    public function __construct(string $identifier,
+                                string $filesPath,
+                                TenantInterface $tenant,
+                                EventDispatcherInterface $dispatcher,
+                                UrlMatcherInterface $matcher)
     {
         $this->identifier = $identifier;
         $this->filesPath = $filesPath;
         $this->tenant = $tenant;
         $this->dispatcher = $dispatcher;
+        $this->matcher = $matcher;
     }
 
     /**
@@ -34,6 +42,10 @@ class HttpRequestSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
         if($this->hasTenant($request))
         {
+            $parameters = $this->matcher->match($request->getPathInfo());
+            if(str_starts_with($parameters['_route'],'tenants')){
+                throw new NotFoundHttpException(sprintf('No route found for "%s %s"', $request->getMethod(), $request->getUriForPath($request->getPathInfo())));
+            }
             $this->resolveTenant($request);
         }
     }

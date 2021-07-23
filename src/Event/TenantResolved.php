@@ -22,7 +22,7 @@ class TenantResolved extends Event
         return $this->tenantId;
     }
 
-    public function getTenantConfig()
+    public function getTenantConfig(): object
     {
         return $this->tenantConfig;
     }

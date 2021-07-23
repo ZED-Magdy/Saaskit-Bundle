@@ -22,6 +22,15 @@ class Configuration implements ConfigurationInterface
                 ->cannotBeEmpty()
                 ->info("prefix: tenant.example.com\nslash: example.com/tenant")
             ->end()
+            ->enumNode('database_type')
+                ->defaultValue('single')
+                ->values([
+                    'single',
+                    'multiple'
+                ])
+                ->info("single is a single database for all tenants\nmultiple: every tenant has it's database")
+                ->cannotBeEmpty()
+            ->end()
             ->scalarNode('tenants_files_path')
                 ->defaultValue('%kernel.project_dir%/config/packages/saas_kit')
                 ->info('the path to the tenants json configurations files')
