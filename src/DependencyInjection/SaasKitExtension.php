@@ -28,5 +28,12 @@ class SaasKitExtension extends Extension implements PrependExtensionInterface
         $container->prependExtensionConfig('twig', [
             'form_themes' => ['bootstrap_5_layout.html.twig']
         ]);
+        $container->prependExtensionConfig('framework', [
+            'messenger' => [
+                'routing' => [
+                    'ZedMagdy\Bundle\SaasKitBundle\Messages\CreateTenant' => 'async'
+                ]
+            ]
+        ]);
     }
 }

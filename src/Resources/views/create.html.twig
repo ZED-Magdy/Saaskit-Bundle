@@ -1,4 +1,8 @@
 {% extends '@SaasKit/base.html.twig' %}
 {% block body %}
-{{ form(form) }}
+    {% if error != null %}
+        <div class="alert alert-danger"><p>{{ error }}</p></div>
+    {% endif %}
+    <h3>Create a new Tenant</h3>
+    {{ form(form) }}
 {% endblock %}

@@ -17,8 +17,9 @@
         "symfony/translation": "^4.4|^5.0",
         "symfony/twig-bundle": "^4.4|^5.0",
         "symfony/validator": "^5.3.3",
-        "symfony/maker-bundle": "3.x-dev",
-        "doctrine/annotations": "1.14.x-dev"
+        "doctrine/annotations": "1.13.1",
+        "symfony/yaml": "5.3.3",
+        "symfony/doctrine-messenger": "5.3.2"
     },
     "license": "MIT",
     "autoload": {

@@ -14,6 +14,11 @@
             <argument type="service" id="Symfony\Component\Routing\Matcher\UrlMatcherInterface"/>
             <tag name="kernel.event_listener" event="kernel.request" priority="512"/>
         </service>
+        <service id="ZedMagdy\Bundle\SaasKitBundle\Command\CreateTenantCommand">
+            <argument type="service" id="Doctrine\ORM\EntityManagerInterface"/>
+            <argument type="service" id="event_dispatcher"/>
+            <tag name="console.command" command="saaskit:create-tenant" />
+        </service>
         <service id="%saas_kit.factory.class%" synthetic="true" />
         <service id="ZedMagdy\Bundle\SaasKitBundle\Model\TenantInterface">
             <!-- the first argument is the class and the second argument is the static method -->
@@ -25,8 +30,16 @@
             </call>
             <tag name="container.service_subscriber"/>
             <tag name="controller.service_arguments"/>
+            <argument type="service" id="messenger.routable_message_bus"/>
+            <argument>%saas_kit.tenants_files_path%</argument>
         </service>
     <service alias="saas_kit_create_controller" id="ZedMagdy\Bundle\SaasKitBundle\Controller\CreateTenantController"
              public="true"/>
+    <service id="ZedMagdy\Bundle\SaasKitBundle\Messages\CreateTenantHandler">
+        <tag name="messenger.message_handler"
+             handles="ZedMagdy\Bundle\SaasKitBundle\Messages\CreateTenant"/>
+        <argument type="service" id="kernel"/>
+        <argument type="service" id="logger"/>
+    </service>
     </services>
 </container>

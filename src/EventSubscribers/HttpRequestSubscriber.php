@@ -43,7 +43,7 @@ class HttpRequestSubscriber implements EventSubscriberInterface
         if($this->hasTenant($request))
         {
             $parameters = $this->matcher->match($request->getPathInfo());
-            if(str_starts_with($parameters['_route'],'tenants')){
+            if(str_starts_with($parameters['_route'],'saaskit')){
                 throw new NotFoundHttpException(sprintf('No route found for "%s %s"', $request->getMethod(), $request->getUriForPath($request->getPathInfo())));
             }
             $this->resolveTenant($request);
